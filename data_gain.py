@@ -16,9 +16,9 @@ for i in tqdm(range(len(sents))):
     else:
         new_train.append(sents[i])
         new_train_label.append(lable[i])
-        data = {"from": 'en', "to": 'zh', "apikey": '949926ff411994c511daca5f30c83a02', "src_text": sents[i]}
+        data = {"from": 'en', "to": 'zh', "apikey": '', "src_text": sents[i]}
         res = requests.post(url, data=data).json()
-        new_data = {"from": 'zh', "to": 'en', "apikey": '949926ff411994c511daca5f30c83a02', "src_text": str(res['tgt_text'])}
+        new_data = {"from": 'zh', "to": 'en', "apikey": '', "src_text": str(res['tgt_text'])}
         new_res = requests.post(url, data=new_data).json()
         new_sent = new_res['tgt_text']
         new_train.append(new_sent)
