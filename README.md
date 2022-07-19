@@ -1,9 +1,43 @@
 # Code for the AI Internship Course at Northeastern University
 
+    |--checkpoint/
+    |--commands/
+    |------train.sh
+    |------train_t5.sh
+    |------train_bert_bitfit.sh
+    |------train_bert_prompt.sh
+    |------train_t5_bitfit.sh
+    |------train_t5_prompt.sh
+    |--output/
+    |--bert_model.py
+    |--data_gain.py
+    |--data_ultis.py
+    |--inference.py
+    |--KB_prompt.py
+    |--prompt_bert.py
+    |--prompt_t5.py
+    |--prompt_test.py
+    |--prompt_train.py
+    |--t5_model.py
+    |--test.py
+    |--train.py
+    |--utils.py
+    |--README.md
+
+
 ## environment
 
+    # pytorch and transformers
     pytorch == 1.8.0
     transformers >= 4.20.1
+    # OpenPrompt using Pip:
+    pip install openprompt
+    # OpenPrompt using Git:
+    git clone https://github.com/thunlp/OpenPrompt.git
+    cd OpenPrompt
+    pip install -r requirements.txt
+    python setup.py install
+
 
 ## commands
 
