@@ -23,13 +23,13 @@ def inference():
     )
     parser.add_argument(
         "--test_data_path",
-        default='./data/mydata/test.json',
+        default='./data/test.json',
         type=str,
         help="The testing data path.",
     )
     parser.add_argument(
         "--test_label_path",
-        default='./data/mydata/dev_labels.json',
+        default='./data/test_labels.json',
         type=str,
         help="The testing label path.",
     )
