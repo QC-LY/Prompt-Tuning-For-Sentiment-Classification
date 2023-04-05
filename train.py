@@ -216,7 +216,7 @@ def main():
     )
     parser.add_argument(
         "--hidden_size",
-        default=1024,
+        default=768,
         type=int,
         help="Hidden size.",
     )
