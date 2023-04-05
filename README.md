@@ -1,88 +1,122 @@
-# Code for the AI Internship Course at Northeastern University
+# Prompt Tuning For Sentiment Classification Base On Pre-trained Language Models
 
-    |--checkpoint/
-    |--commands/
-    |------train.sh
-    |------train_t5.sh
-    |------train_bert_bitfit.sh
-    |------train_bert_prompt.sh
-    |------train_t5_bitfit.sh
-    |------train_t5_prompt.sh
-    |--output/
-    |--bert_model.py
-    |--data_gain.py
-    |--data_ultis.py
-    |--inference.py
-    |--KB_prompt.py
-    |--prompt_bert.py
-    |--prompt_t5.py
-    |--prompt_test.py
-    |--prompt_train.py
-    |--t5_model.py
-    |--test.py
-    |--train.py
-    |--utils.py
-    |--README.md
+## **Code for the AI Internship at Northeastern University**
 
+```
+|--checkpoint/
+|--data/
+|------train_demo.json
+|------train_labels_demo.json
+|--commands/
+|------train.sh
+|------train_t5.sh
+|------train_bert_bitfit.sh
+|------train_bert_prompt.sh
+|------train_t5_bitfit.sh
+|------train_t5_prompt.sh
+|--output/
+|--bert_model.py
+|--data_gain.py
+|--data_ultis.py
+|--inference.py
+|--KB_prompt.py
+|--prompt_bert.py
+|--prompt_t5.py
+|--prompt_test.py
+|--prompt_train.py
+|--t5_model.py
+|--test.py
+|--train.py
+|--utils.py
+|--README.md
+```
 
-## environment
+## Data
 
-    # pytorch and transformers
-    pytorch == 1.8.0
-    transformers >= 4.20.1
-    # OpenPrompt using Pip:
-    pip install openprompt
-    # OpenPrompt using Git:
-    git clone https://github.com/thunlp/OpenPrompt.git
-    cd OpenPrompt
-    pip install -r requirements.txt
-    python setup.py install
+The data for this project is internal. The format of the data is as shown in the example in the `./data/train.json` and `./data/train_labels.json` . 
 
+The dev set and the test set have the same format as the train set.
 
-## commands
+Before you can run the code, you will need to process your own dataset into the following 6 files in `./data/`:
 
-    cd ./commands
+```
+|--data/
+|------train_demo.json
+|------train_labels_demo.json
+|------train.json
+|------train_labels.json
+|------dev.json
+|------dev_labels.json
+|------test.json
+|------test_labels.json
+```
 
-### 1. Full fine-tuning
-full fine-tuning BERT:
+## Experiment
 
-    bash train.sh
+We explore the different performance of pre-trained language model(BERT and T5) among Full Fine-tuning, Bias-term Fine-tuning and Prompt-tuning. We regard ***accuracy*** as our main evaluation.
 
-full fine-tuning T5:
+| Method             | ACC       |
+| ------------------ | --------- |
+| BERT-fine-tuning   | 85.66     |
+| BERT-BitFit        | 83.41     |
+| BERT-hard-P-tuning | 84.11     |
+| BERT-soft-P-tuning | 85.09     |
+| T5-fine-tuning     | **87.03** |
+| T5-BitFit          | 83.55     |
+| T5-hard-P-tuning   | 85.55     |
+| T5-soft-P-tuning   | **86.48** |
 
-    bash train_t5.sh
+## Commands
 
-### 2. Bitfit
+```shell
+cd ./commands
+```
 
-Bitfit BERT or T5:
+### 1. Full fine tuning
 
-    bash train_bert_bitfit.sh  #BERT
-    bash train_t5_bitfit.sh    #T5
+```shell
+# For BERT
+bash train.sh
+# For T5
+bash train_t5.sh
+```
+
+### 2. Bias-term Fine-tuning(BitFit)
+
+```shell
+# For BERT
+bash train_bert_bitfit.sh
+# For T5
+bash train_t5_bitfit.sh
+```
 
 ### 3. Prompt-tuning
 
-prompt-tuning BERT:
+```shell
+# For BERT
+bash train_bert_prompt.sh
+# For T5
+bash train_t5_prompt.sh
+```
 
-    bash train_bert_prompt.sh
+### 4. Inference for test
 
-prompt-tuning T5:
+```shell
+# Fine tuning or BitFit
+python test.py --model_name bert/t5
+# prompt tuning
+python prompt_test.py --model_name bert/t5
+```
 
-    bash train_t5_prompt.sh
+## Others
 
-test in fine-tune or bitfit model:
+checkpoints will be saved in ./checkpoints
 
-    python test.py --model_name bert/t5
+train and test logs will be saved in ./checkpoints
 
-test in prompt-tune model:
+If you have questions, suggestions, and bug reports, please email:
 
-    python prompt_test.py --model_name bert/t5
+```
+lvyuanhuiyi@foxmail.com
+```
 
-## other
-datasets are in 
-    ./data
-
-checkpoints will be saved in
-    ./checkpoints
-
-train and test logs will be saved in 
-    ./checkpoints
