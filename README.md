@@ -1,6 +1,6 @@
 # Prompt Tuning For Sentiment Classification Base On Pre-trained Language Models
 
-## **Code for the AI Internship at Northeastern University**
+## **Code for the Internship at NEU-NLP Lab**
 
 ```
 |--checkpoint/
